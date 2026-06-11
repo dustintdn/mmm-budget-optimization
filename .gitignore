@@ -21,7 +21,6 @@ env/
 *.ipynb_checkpoints
 
 # Data (large files)
-data/*.csv
 data/*.parquet
 data/*.xlsx
 !data/.gitkeep
@@ -41,5 +40,8 @@ Thumbs.db
 .idea/
 .claude/
 
+# Project dev
+CLAUDE.md
+mmm_project_spec.md
 # PyMC / ArviZ cache
 .pymc_cache/

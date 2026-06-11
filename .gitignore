@@ -39,8 +39,6 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
-
-# Claude Code
 .claude/
 
 # PyMC / ArviZ cache

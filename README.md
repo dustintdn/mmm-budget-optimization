@@ -2,21 +2,21 @@
 
 ## Business Question
 
-**Given a fixed marketing budget, are we spending it in the right places — and how should we reallocate it?**
+**Given a fixed marketing budget, are we spending it in the right places, and how should we reallocate it?**
 
 ---
 
 ## Approach
 
-Traditional attribution (last-click, or "naive ROAS") systematically misleads budget decisions: it ignores the delayed effect of advertising (you see an ad Monday, you buy Thursday) and the diminishing returns from overinvesting in a single channel (doubling Facebook spend doesn't double Facebook sales).
+Traditional attribution (last-click, or "naive ROAS") systematically misleads budget decisions: it ignores the delayed effect of advertising (you see an ad Monday, you buy Friday) and the diminishing returns from overinvesting in a single channel (doubling Facebook spend doesn't double Facebook sales).
 
-Marketing Mix Modeling (MMM) solves both problems. By fitting a Bayesian model with **adstock** (time-lagged carry-over effects) and **saturation** (S-curve diminishing returns) transformations, we can estimate the true, causally-correct contribution of each channel to sales — and use that to mathematically optimize how the budget should be split.
+Marketing Mix Modeling (MMM) solves both problems. By fitting a Bayesian model with **adstock** (time-lagged carry-over effects) and **saturation** (S-curve diminishing returns) transformations, we can estimate the true, causally-correct contribution of each channel to sales and use that to mathematically optimize how the budget should be split.
 
 ---
 
 ## Key Findings
 
-- **Email drives ~47% of total incremental sales**, despite representing only 25% of total spend — the highest absolute contributor of any paid channel.
+- **Email drives ~47% of total incremental sales, despite representing only 25% of total spend**: the highest absolute contributor of any paid channel.
 - **Facebook and Google Search are over-invested relative to their saturation curves**: both channels are operating in the diminishing-returns zone, where additional spend yields minimal incremental lift. The optimizer eliminates both from the recommended allocation.
 - **YouTube Paid and YouTube Organic show significant headroom**: current spend sits on the steep part of both saturation curves, indicating strong marginal returns from additional investment.
 
@@ -24,7 +24,7 @@ Marketing Mix Modeling (MMM) solves both problems. By fitting a Bayesian model w
 
 ## Recommendation
 
-Reallocating **~23% of budget away from Facebook and Google Search toward YouTube Paid and YouTube Organic** is projected to increase incremental sales by approximately **1.2%** with no change to total spend. The key reallocation is shifting dollars away from over-saturated channels (Facebook: −9pp, Google Search: −14pp) and into channels with remaining capacity on their response curves (YouTube Paid: +11pp, YouTube Organic: +10pp).
+Reallocating **~23% of budget away from Facebook and Google Search toward YouTube Paid and YouTube Organic** is projected to increase incremental sales by approximately **1.2%** with no change to total spend. The key reallocation is shifting dollars away from over-saturated channels (Facebook: -9pp, Google Search: −14pp) and into channels with remaining capacity on their response curves (YouTube Paid: +11pp, YouTube Organic: +10pp).
 
 ---
 
@@ -56,15 +56,13 @@ source .venv/bin/activate   # macOS / Linux
 pip install -r requirements.txt
 ```
 
-> **Note on PyMC:** PyMC uses a C++ compiler for model compilation. If you hit install issues, follow the [PyMC installation guide](https://www.pymc.io/projects/docs/en/stable/installation.html). Conda is the easiest path: `conda install -c conda-forge pymc pymc-marketing`.
-
 ### 2. Launch the notebook
 
 ```bash
 jupyter notebook notebooks/mmm_analysis.ipynb
 ```
 
-Run all cells top-to-bottom (**Kernel → Restart & Run All**). Model fitting (Phase 2) takes approximately 5–15 minutes depending on your machine.
+Run all cells top-to-bottom (**Kernel → Restart & Run All**). Model fitting (Phase 2) takes approximately 5–15 minutes.
 
 ---
 

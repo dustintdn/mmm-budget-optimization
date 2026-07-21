@@ -16,15 +16,17 @@ Marketing Mix Modeling (MMM) solves both problems. By fitting a Bayesian model w
 
 ## Key Findings
 
-- **Email drives ~47% of total incremental sales, despite representing only 25% of total spend**: the highest absolute contributor of any paid channel.
-- **Facebook and Google Search are over-invested relative to their saturation curves**: both channels are operating in the diminishing-returns zone, where additional spend yields minimal incremental lift. The optimizer eliminates both from the recommended allocation.
-- **YouTube Paid and YouTube Organic show significant headroom**: current spend sits on the steep part of both saturation curves, indicating strong marginal returns from additional investment.
+- **Email drives ~47% of incremental sales on ~25% of activity** — the largest single contributor, though its high saturation rate (lam ≈ 2.7) means it has limited room to grow.
+- **Google Search and Facebook have the highest effectiveness coefficients** (beta ≈ 1.1 and 0.7) and the slowest-saturating response curves, making them the best candidates for additional investment.
+- **YouTube Paid, YouTube Organic, and Affiliate contribute little incrementally** (under 8% combined) — their effectiveness coefficients are near zero, despite Affiliate receiving ~30% of current activity.
 
 ---
 
 ## Recommendation
 
-Reallocating **~23% of budget away from Facebook and Google Search toward YouTube Paid and YouTube Organic** is projected to increase incremental sales by approximately **1.2%** with no change to total spend. The key reallocation is shifting dollars away from over-saturated channels (Facebook: -9pp, Google Search: −14pp) and into channels with remaining capacity on their response curves (YouTube Paid: +11pp, YouTube Organic: +10pp).
+The optimizer shifts budget toward Google Search (+37pp, to 51% of total) and Facebook (+18pp), funded by cutting Affiliate (−30pp) and both YouTube channels (−22pp combined), with Email roughly held (−3pp). Projected incremental sales lift: **+84%** at constant total spend.
+
+Two caveats on that number. It comes from static response curves at mean weekly spend and ignores adstock timing, so it is an upper bound rather than a forecast. And fully zeroing three channels leans on point estimates of near-zero coefficients that carry wide uncertainty intervals — in practice this would be tested as a staged reallocation, not a hard cut.
 
 ---
 

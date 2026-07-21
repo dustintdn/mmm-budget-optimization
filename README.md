@@ -47,6 +47,8 @@ The model includes annual seasonality (Fourier terms) and a non-negative baselin
 - **Over half of current activity sits in channels that barely move sales:** YouTube Paid, YouTube Organic, and Affiliate together receive ~52% of activity but contribute ~9% of incremental sales, with effectiveness coefficients near zero.
 - **Uncertainty is material and reported:** Email's incremental share carries a 94% HDI of 17–51%, which is why the recommendation below is staged rather than all-in.
 
+![Sales decomposition: baseline plus incremental channel contributions](assets/sales_decomposition.png)
+
 ---
 
 ## Recommendation
@@ -55,12 +57,15 @@ A staged reallocation capped at ±10pp per channel: shift budget toward Google S
 
 The unconstrained mathematical optimum projects +112% but concentrates the entire budget in Facebook and Google Search — reported as a ceiling, not a recommendation. Both figures come from static response curves at mean weekly spend and ignore adstock timing, so they are optimistic upper bounds to be validated with a holdout test rather than forecasts.
 
+![Budget reallocation scenarios: current, constrained, unconstrained](assets/budget_scenarios.png)
+
 ---
 
 ## Repository Structure
 
 ```
 mmm-budget-optimization/
+├── assets/                       # Charts exported from the notebook
 ├── data/
 │   └── media_spends.csv          # Kaggle dataset
 ├── notebooks/

@@ -14,6 +14,31 @@ Marketing Mix Modeling (MMM) solves both problems. By fitting a Bayesian model w
 
 ---
 
+## Data
+
+Kaggle "Division-Level Marketing Spend Dataset" (`data/media_spends.csv`):
+weekly marketing activity and sales for 26 retail divisions over 113 weeks
+(Jan 2018 – Feb 2020). The model only fits on Division A — a single
+representative market of 113 weekly observations; the same structure applies
+to any division.
+
+Six media channels are used as predictors, with weekly Sales as the target:
+
+| Model channel | Source column |
+|---|---|
+| Facebook | Facebook_Impressions |
+| Google Search | Google_Impressions |
+| Email | Email_Impressions |
+| YouTube Paid | Paid_Views |
+| YouTube Organic | Organic_Views |
+| Affiliate | Affiliate_Impressions |
+
+Note: these are impression/view counts, not dollar spend, so they're treated
+as a spend proxy and all allocations are expressed in normalized activity
+units (see Caveats).
+
+---
+
 ## Key Findings
 
 - **Email drives ~47% of incremental sales on ~25% of activity** — the largest single contributor, though its high saturation rate (lam ≈ 2.7) means it has limited room to grow.

@@ -10,7 +10,7 @@
 
 Traditional attribution (last-click, or "naive ROAS") systematically misleads budget decisions: it ignores the delayed effect of advertising (you see an ad Monday, you buy Friday) and the diminishing returns from overinvesting in a single channel (doubling Facebook spend doesn't double Facebook sales).
 
-Marketing Mix Modeling (MMM) solves both problems. By fitting a Bayesian model with **adstock** (time-lagged carry-over effects) and **saturation** (S-curve diminishing returns) transformations, we can estimate the true, causally-correct contribution of each channel to sales and use that to mathematically optimize how the budget should be split.
+Marketing Mix Modeling (MMM) addresses both problems. By fitting a Bayesian model with **adstock** (time-lagged carry-over effects) and **saturation** (diminishing-returns) transformations, we get a far more credible estimate of each channel's contribution to sales than last-click attribution — still observational, not a causal experiment — and use it to optimize how the budget should be split.
 
 ---
 
@@ -41,19 +41,19 @@ units (see Caveats).
 
 ## Key Findings
 
-The model fits well (in-sample R² ≈ 0.80 against the posterior predictive mean; clean convergence diagnostics across 4 chains).
+The model includes annual seasonality (Fourier terms) and a non-negative baseline, fits well (in-sample R² ≈ 0.80 against the posterior predictive mean), and samples cleanly (4 chains, zero divergences, max r-hat 1.003).
 
-- **Email drives ~47% of incremental sales (94% HDI: 33–62%) on ~25% of activity** — the largest single contributor, though its high saturation rate means limited room to grow.
-- **Google Search and Facebook have the highest effectiveness coefficients** (beta ≈ 1.1 and 0.7) and the slowest-saturating response curves, making them the best candidates for additional investment.
-- **YouTube Paid, YouTube Organic, and Affiliate contribute little incrementally** (~7% combined) — their effectiveness coefficients are near zero, despite Affiliate receiving ~30% of current activity.
+- **Email, Google Search, and Facebook drive ~91% of incremental sales** (35%, 31%, and 25% respectively) — Email on only ~25% of total activity.
+- **Over half of current activity sits in channels that barely move sales:** YouTube Paid, YouTube Organic, and Affiliate together receive ~52% of activity but contribute ~9% of incremental sales, with effectiveness coefficients near zero.
+- **Uncertainty is material and reported:** Email's incremental share carries a 94% HDI of 17–51%, which is why the recommendation below is staged rather than all-in.
 
 ---
 
 ## Recommendation
 
-A staged reallocation capped at ±10pp per channel: shift budget toward Google Search, Facebook, and Email, funded by cuts to Affiliate and both YouTube channels. Projected incremental sales lift at constant total spend: **+46%** (94% HDI: 35–59%, from re-optimizing under 200 posterior draws).
+A staged reallocation capped at ±10pp per channel: shift budget toward Google Search, Facebook, and Email, funded by cuts to Affiliate and both YouTube channels. Projected incremental sales lift at constant total spend: **+51%** (94% HDI: 43–67%, from re-optimizing under 200 posterior draws).
 
-The unconstrained mathematical optimum projects +85% but zeroes out three channels entirely based on point estimates of near-zero coefficients — reported as a ceiling, not a recommendation. Both figures come from static response curves at mean weekly spend and ignore adstock timing, so they are optimistic upper bounds to be validated with a holdout test rather than forecasts.
+The unconstrained mathematical optimum projects +112% but concentrates the entire budget in Facebook and Google Search — reported as a ceiling, not a recommendation. Both figures come from static response curves at mean weekly spend and ignore adstock timing, so they are optimistic upper bounds to be validated with a holdout test rather than forecasts.
 
 ---
 
@@ -91,7 +91,7 @@ pip install -r requirements.txt
 jupyter notebook notebooks/mmm_analysis.ipynb
 ```
 
-Run all cells top-to-bottom (**Kernel → Restart & Run All**). Model fitting (Phase 2) takes approximately 5–15 minutes.
+Run all cells top-to-bottom (**Kernel → Restart & Run All**). The full notebook takes a few minutes; MCMC sampling itself runs in under a minute on a modern laptop.
 
 ---
 
@@ -99,4 +99,4 @@ Run all cells top-to-bottom (**Kernel → Restart & Run All**). Model fitting (P
 
 - **Single market:** The model is fit on Division A (one of 26). Results are directionally representative but should be validated across divisions before acting on them.
 - **Impressions as spend proxy:** The dataset contains impression/view counts rather than dollar spend, so budget allocation is expressed in normalized activity units. A production version would use actual media spend in dollars.
-- **No external controls:** Seasonality, competitor activity, and macro-economic factors are not modeled. In a production MMM, these would be included as control variables to isolate true media contribution.
+- **Limited controls:** Annual seasonality is modeled with Fourier terms, but competitor activity, pricing, promotions, and macro-economic factors are not. In a production MMM, these would be included as control variables to better isolate media contribution.

@@ -41,17 +41,19 @@ units (see Caveats).
 
 ## Key Findings
 
-- **Email drives ~47% of incremental sales on ~25% of activity** — the largest single contributor, though its high saturation rate (lam ≈ 2.7) means it has limited room to grow.
+The model fits well (in-sample R² ≈ 0.80 against the posterior predictive mean; clean convergence diagnostics across 4 chains).
+
+- **Email drives ~47% of incremental sales (94% HDI: 33–62%) on ~25% of activity** — the largest single contributor, though its high saturation rate means limited room to grow.
 - **Google Search and Facebook have the highest effectiveness coefficients** (beta ≈ 1.1 and 0.7) and the slowest-saturating response curves, making them the best candidates for additional investment.
-- **YouTube Paid, YouTube Organic, and Affiliate contribute little incrementally** (under 8% combined) — their effectiveness coefficients are near zero, despite Affiliate receiving ~30% of current activity.
+- **YouTube Paid, YouTube Organic, and Affiliate contribute little incrementally** (~7% combined) — their effectiveness coefficients are near zero, despite Affiliate receiving ~30% of current activity.
 
 ---
 
 ## Recommendation
 
-The optimizer shifts budget toward Google Search (+37pp, to 51% of total) and Facebook (+18pp), funded by cutting Affiliate (−30pp) and both YouTube channels (−22pp combined), with Email roughly held (−3pp). Projected incremental sales lift: **+84%** at constant total spend.
+A staged reallocation capped at ±10pp per channel: shift budget toward Google Search, Facebook, and Email, funded by cuts to Affiliate and both YouTube channels. Projected incremental sales lift at constant total spend: **+46%** (94% HDI: 35–59%, from re-optimizing under 200 posterior draws).
 
-Two caveats on that number. It comes from static response curves at mean weekly spend and ignores adstock timing, so it is an upper bound rather than a forecast. And fully zeroing three channels leans on point estimates of near-zero coefficients that carry wide uncertainty intervals — in practice this would be tested as a staged reallocation, not a hard cut.
+The unconstrained mathematical optimum projects +85% but zeroes out three channels entirely based on point estimates of near-zero coefficients — reported as a ceiling, not a recommendation. Both figures come from static response curves at mean weekly spend and ignore adstock timing, so they are optimistic upper bounds to be validated with a holdout test rather than forecasts.
 
 ---
 
